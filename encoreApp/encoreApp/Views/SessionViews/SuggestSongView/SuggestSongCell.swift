@@ -27,16 +27,13 @@ struct SuggestSongCell: View {
     }
     
     private var albumView: some View {
-        URLImage(URL(string: song.album.images[1].url)!, placeholder: { _ in
-                // Replace placeholder image with text
-                self.currentImage.opacity(0.0)
-        }, content: {
-               $0.image
+        URLImage(url: URL(string: song.album.images[1].url)!) { image in
+               image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 55, height: 55)
                 .cornerRadius(5)
-            }).frame(width: 55, height: 55)
+            }.frame(width: 55, height: 55)
     }
     
     private var songView: some View {

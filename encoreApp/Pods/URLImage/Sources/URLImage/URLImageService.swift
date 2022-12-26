@@ -2,72 +2,51 @@
 //  URLImageService.swift
 //  
 //
-//  Created by Dmytro Anokhin on 11/10/2019.
+//  Created by Dmytro Anokhin on 25/08/2020.
 //
 
 import Foundation
+import CoreGraphics
+import Combine
+
+#if canImport(DownloadManager)
+import DownloadManager
+#endif
 
 
-@available(iOS 13.0, tvOS 13.0, macOS 10.15, watchOS 6.0, *)
-public protocol URLImageServiceType {
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+public final class URLImageService {
 
-    var services: Services { get }
+    public static let shared = URLImageService()
 
-    var defaultExpiryTime: TimeInterval { get }
+    /// The default options
+    ///
+    /// The default options are used to provide default values to properties when `URLImageOptions` is created. This allows to customize individual properties of the `URLImageOptions` object retaining default values.
+    ///
+    ///     let myOptions = URLImageOptions(identifier: "MyImage")
+    ///
+    /// In this example `myOptions` will retain default values set using this property.
+    public var defaultOptions = URLImageOptions(identifier: nil,
+                                                expireAfter: 24 * 60 * 60,
+                                                cachePolicy: .returnCacheElseLoad(),
+                                                load: [ .loadImmediately, .loadOnAppear, .cancelOnDisappear ],
+                                                urlRequestConfiguration: .init(),
+                                                maxPixelSize: URLImageService.suggestedMaxPixelSize)
 
-    func setDefaultExpiryTime(_ defaultExpiryTime: TimeInterval)
-
-    func resetFileCache()
-
-    func cleanFileCache()
-
-    func removeCachedImage(with url: URL)
-}
-
-
-@available(iOS 13.0, tvOS 13.0, macOS 10.15, watchOS 6.0, *)
-public final class Services {
-
-    init(remoteFileCacheService: RemoteFileCacheService, downloadService: DownloadService) {
-        self.remoteFileCacheService = remoteFileCacheService
-        self.downloadService = downloadService
+    public var diskCacheURL: URL {
+        diskCache.fileIndex.configuration.filesDirectoryURL
     }
 
-    let remoteFileCacheService: RemoteFileCacheService
+    // MARK: - Internal
 
-    let downloadService: DownloadService
-}
+    let downloadManager = DownloadManager()
 
+    let diskCache = DiskCache()
 
-@available(iOS 13.0, tvOS 13.0, macOS 10.15, watchOS 6.0, *)
-public final class URLImageService: URLImageServiceType {
+    let inMemoryCache = InMemoryCache()
 
-    public static let shared: URLImageServiceType = URLImageService()
-
-    public let services: Services
-
-    public private(set) var defaultExpiryTime: TimeInterval = 60.0 * 60.0 * 24.0 * 7.0 // 1 week
-
-    public func setDefaultExpiryTime(_ defaultExpiryTime: TimeInterval) {
-        self.defaultExpiryTime = defaultExpiryTime
-    }
-
-    public func resetFileCache() {
-        services.remoteFileCacheService.reset()
-    }
-
-    public func cleanFileCache() {
-        services.remoteFileCacheService.clean()
-    }
-
-    public func removeCachedImage(with url: URL) {
-        services.remoteFileCacheService.delete(withRemoteURL: url)
-    }
+    // MARK: - Private
 
     private init() {
-        let remoteFileCacheService = RemoteFileCacheServiceImpl(name: "URLImage", baseURL: FileManager.appCachesDirectoryURL)
-        let downloadService = DownloadServiceImpl(remoteFileCache: remoteFileCacheService)
-
-        services = Services(remoteFileCacheService: remoteFileCacheService, downloadService: downloadService)
     }
 }

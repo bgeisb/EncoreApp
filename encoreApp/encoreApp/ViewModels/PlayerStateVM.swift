@@ -99,9 +99,16 @@ class PlayerStateVM: ObservableObject {
 //                                    }
 //                                }
                                 
-                                KingfisherManager.shared.retrieveImage(with: URL(string: sng.cover_url)!, options: nil, progressBlock: nil, completionHandler: { image, error, cacheType, imageURL in
-                                    self?.albumCover = image ?? UIImage(imageLiteralResourceName: "albumPlaceholder")
+                                KingfisherManager.shared.retrieveImage(with: URL(string: sng.cover_url)!, options: nil, progressBlock: nil, completionHandler: { result in
+                                    switch result {
+                                    case .success(let value):
+                                        self?.albumCover = value.image ?? UIImage(imageLiteralResourceName: "albumPlaceholder")
+                                    case .failure(let error):
+                                        // Handle the error
+                                        break
+                                    }
                                 })
+
                                 
                             } else {
                                 self?.progress = 0

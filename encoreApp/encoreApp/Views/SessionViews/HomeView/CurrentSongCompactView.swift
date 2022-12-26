@@ -41,16 +41,13 @@ struct CurrentSongCompactView: View {
     }
     
     private var albumView: some View {
-        URLImage(URL(string: playerStateVM.song.cover_url)!, placeholder: { _ in
-                // Replace placeholder image with text
-                self.currentImage.opacity(0.0)
-        }, content: {
-               $0.image
+        URLImage(url: URL(string: playerStateVM.song.cover_url)!) { image in
+               image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 50, height: 50)
                 .cornerRadius(5)
-            })
+            }
     }
 }
 

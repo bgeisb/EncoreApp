@@ -41,15 +41,13 @@ struct SongListCell: View {
     }
     
     private var albumView: some View {
-        URLImage(URL(string: self.song.cover_url)!, placeholder: { _ in
-                self.currentImage.opacity(0.0)
-        }, content: {
-               $0.image
+        URLImage(url: URL(string: self.song.cover_url)!) { image in
+               image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 55, height: 55)
                 .cornerRadius(5)
-            }).frame(width: 55, height: 55)
+            }.frame(width: 55, height: 55)
             .padding(.horizontal, 10)
     }
     
