@@ -8,18 +8,19 @@
 
 import SwiftUI
 
-struct ButtonHeavyModifier: ViewModifier {
+struct PlainButtonModifier: ViewModifier {
     var isDisabled: Bool
-    var backgroundColor: Color
-    var foregroundColor: Color
+    var backgroundColor: Color = Color("Blue")
+    var foregroundColor: Color = Color.white
     func body(content: Content) -> some View {
         content
-            .font(.headline)
-            .padding(15)
+            .font(.callout.bold())
+            .padding(.horizontal, 15)
+            .padding(.vertical, 18)
             .frame(minWidth: 0, maxWidth: .infinity)
-            .background(isDisabled ? Color("buttonDisabledGray") : backgroundColor)
+            .background(isDisabled ? Color("Teal") : backgroundColor)
             .foregroundColor(isDisabled ? Color("lightgray") : foregroundColor)
             .cornerRadius(15)
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 25)
     }
 }

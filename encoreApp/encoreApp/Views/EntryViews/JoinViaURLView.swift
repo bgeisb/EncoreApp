@@ -55,7 +55,7 @@ struct JoinViaURLView: View {
                             .frame(width: 20, height: 20).foregroundColor(Color.white)
                     }
                 }
-                     .modifier(ButtonHeavyModifier(isDisabled: username.count < 1, backgroundColor: Color("purpleblue"), foregroundColor: Color.white))
+                     .modifier(PlainButtonModifier(isDisabled: username.count < 1, backgroundColor: Color("purpleblue"), foregroundColor: Color.white))
             }.padding(.bottom)
             .disabled(username.count < 1)
             .alert(isPresented: $showWrongIDAlert) {

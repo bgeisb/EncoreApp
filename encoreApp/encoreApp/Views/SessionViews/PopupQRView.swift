@@ -40,7 +40,7 @@ struct PopupQRCodeView: View {
             UIImageWriteToSavedPhotosAlbum(self.generateQRCodeImage("encoreApp://\(self.userVM.sessionID)"), nil, nil, nil)
         }) {
             Text("Save QR Code")
-                .modifier(ButtonHeavyModifier(isDisabled: false, backgroundColor: Color("purpleblue"), foregroundColor: Color.white))
+                .modifier(PlainButtonModifier(isDisabled: false, backgroundColor: Color("purpleblue"), foregroundColor: Color.white))
         }.padding(.horizontal)
     }
     
@@ -49,7 +49,7 @@ struct PopupQRCodeView: View {
             self.showShareSheet.toggle()
         }) {
             Text("Share Invite Link")
-                .modifier(ButtonHeavyModifier(isDisabled: false, backgroundColor: Color("purpleblue"), foregroundColor: Color.white))
+                .modifier(PlainButtonModifier(isDisabled: false, backgroundColor: Color("purpleblue"), foregroundColor: Color.white))
         }.padding()
     }
     
