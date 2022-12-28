@@ -57,6 +57,9 @@
 		8FDEBF7C24AD2D240090B5F2 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDEBF7B24AD2D240090B5F2 /* ProgressBarView.swift */; };
 		8FE5348F24812EFB00D4D630 /* VoteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5348E24812EFB00D4D630 /* VoteState.swift */; };
 		9294009AE55977D9C7CE79BE /* Pods_encoreApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB562E311EF290F2CF787D15 /* Pods_encoreApp.framework */; };
+		BDB10199295BC69400D0929B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB10198295BC69400D0929B /* LottieView.swift */; };
+		BDB1019C295BC8BD00D0929B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BDB1019B295BC8BD00D0929B /* Lottie */; };
+		BDB1019F295BC9CF00D0929B /* Sound_Visualizer.json in Resources */ = {isa = PBXBuildFile; fileRef = BDB1019E295BC9CF00D0929B /* Sound_Visualizer.json */; };
 		BDFC662D2959FC42003610DF /* SpotifyiOS.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDFC662C2959FC42003610DF /* SpotifyiOS.xcframework */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +116,8 @@
 		8FB738DD252884C800DC5BDF /* PopupQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupQRView.swift; sourceTree = "<group>"; };
 		8FDEBF7B24AD2D240090B5F2 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		8FE5348E24812EFB00D4D630 /* VoteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteState.swift; sourceTree = "<group>"; };
+		BDB10198295BC69400D0929B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		BDB1019E295BC9CF00D0929B /* Sound_Visualizer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sound_Visualizer.json; sourceTree = "<group>"; };
 		BDFC662C2959FC42003610DF /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
 		CB562E311EF290F2CF787D15 /* Pods_encoreApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_encoreApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB52A25E9E25B46F5C98F1E1 /* Pods-encoreApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-encoreApp.release.xcconfig"; path = "Target Support Files/Pods-encoreApp/Pods-encoreApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB1019C295BC8BD00D0929B /* Lottie in Frameworks */,
 				233D2ADD2493E36C00994038 /* CodeScanner in Frameworks */,
 				231CDA2C249D3FDD00632B8C /* SpotifyiOS.framework in Frameworks */,
 				BDFC662D2959FC42003610DF /* SpotifyiOS.xcframework in Frameworks */,
@@ -168,6 +174,7 @@
 				231CDA2E249E0B9700632B8C /* ImageLoader.swift */,
 				23050BBB2513627D00B59A4C /* AnyGestureRecognizer.swift */,
 				231CDA30249E0BB700632B8C /* AsyncImage.swift */,
+				BDB1019D295BC9BF00D0929B /* Lottie */,
 				23190665247DA26400DA550B /* Assets.xcassets */,
 				2319066A247DA26400DA550B /* LaunchScreen.storyboard */,
 				2319066D247DA26400DA550B /* Info.plist */,
@@ -238,6 +245,7 @@
 				233D2ACF2492738A00994038 /* EntryViews */,
 				233D2AD0249273A500994038 /* SessionViews */,
 				8F0CAC3224A2055300531BB0 /* Modifiers */,
+				BDB10198295BC69400D0929B /* LottieView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -305,6 +313,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BDB1019D295BC9BF00D0929B /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				BDB1019E295BC9CF00D0929B /* Sound_Visualizer.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		EA0C8535CA145DB755EB7178 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +350,7 @@
 			name = encoreApp;
 			packageProductDependencies = (
 				233D2ADC2493E36C00994038 /* CodeScanner */,
+				BDB1019B295BC8BD00D0929B /* Lottie */,
 			);
 			productName = encoreApp;
 			productReference = 2319065C247DA25F00DA550B /* encoreApp.app */;
@@ -365,6 +382,7 @@
 			mainGroup = 23190653247DA25F00DA550B;
 			packageReferences = (
 				233D2ADB2493E36C00994038 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				BDB1019A295BC8BD00D0929B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 2319065D247DA25F00DA550B /* Products */;
 			projectDirPath = "";
@@ -383,6 +401,7 @@
 				2319066C247DA26400DA550B /* LaunchScreen.storyboard in Resources */,
 				23190669247DA26400DA550B /* Preview Assets.xcassets in Resources */,
 				23190666247DA26400DA550B /* Assets.xcassets in Resources */,
+				BDB1019F295BC9CF00D0929B /* Sound_Visualizer.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +456,7 @@
 			files = (
 				8FB1058A24AB55A3007C15A1 /* CurrentSongView.swift in Sources */,
 				8F9AF39C24C4CE3200FCEFD0 /* ScannerSheetView.swift in Sources */,
+				BDB10199295BC69400D0929B /* LottieView.swift in Sources */,
 				2319067C247DBDB600DA550B /* SongListCell.swift in Sources */,
 				231CDA24249D3A8800632B8C /* MusicController.swift in Sources */,
 				23190660247DA25F00DA550B /* AppDelegate.swift in Sources */,
@@ -717,6 +737,14 @@
 				minimumVersion = 1.0.6;
 			};
 		};
+		BDB1019A295BC8BD00D0929B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -724,6 +752,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 233D2ADB2493E36C00994038 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
+		};
+		BDB1019B295BC8BD00D0929B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDB1019A295BC8BD00D0929B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

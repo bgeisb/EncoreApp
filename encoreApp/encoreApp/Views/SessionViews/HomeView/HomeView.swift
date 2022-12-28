@@ -15,6 +15,7 @@ struct HomeView: View {
     @ObservedObject var musicController: MusicController = .shared
     @ObservedObject var songListVM: SongListVM
     @ObservedObject var userVM: UserVM
+    @ObservedObject var userListVM: UserListVM
     @ObservedObject var playerStateVM: PlayerStateVM
     @ObservedObject var searchResultListVM: SearchResultListVM
     
@@ -32,98 +33,123 @@ struct HomeView: View {
         self.userVM = userVM
         self._currentlyInSession = currentlyInSession
         self.songListVM = SongListVM(userVM: userVM)
+        self.userListVM = UserListVM(userVM: userVM, sessionID: nil)
         self.playerStateVM = PlayerStateVM(userVM: userVM)
         self.searchResultListVM = SearchResultListVM(userVM: userVM)
     }
     
     var body: some View {
-        ZStack {
-            ScrollView {
-                GeometryReader { geo in
-                    // Text("\(geo.frame(in: .global).minY)").offset(y: -geo.frame(in: .global).minY + self.offset)
-                    Text("")
-                        .onAppear {self.offset = geo.frame(in: .global).minY}
-                    if (geo.frame(in: .global).minY > -220 && playerStateVM.song.name != "empty_song") {
-                        VStack {
-                            Spacer().frame(height: 20)
-                            HStack {
+        GeometryReader { geometry in
+            ZStack {
+                Image("Blob")
+                    .scaledToFill()
+                    .offset(y: -geometry.size.height/2)
+                
+                ScrollView {
+                    GeometryReader { geo in
+                        Text("")
+                            .onAppear {
+                                self.offset = geo.frame(in: .global).minY
+                            }
+                        
+                        if (geo.frame(in: .global).minY > -220 && playerStateVM.song.name != "empty_song") {
+                            VStack(spacing: 25) {
                                 Spacer()
+                                    .frame(height: 40)
+                                
+                                // Welcome Message
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("Welcome to")
+                                            .font(.title.bold())
+                                        
+                                        Text("\(userListVM.members.first(where: { $0.is_admin })?.username ?? "Host")'s Session 👋")
+                                            .font(.title.bold())
+                                            .foregroundColor(Color("Blue"))
+                                    }
+                                    
+                                    Spacer()
+                                }
+                                
                                 CurrentSongView(playerStateVM: self.playerStateVM)
+                                
+                                //                            ProgressBarView(playerStateVM: self.playerStateVM, showMenuSheet: $showMenuSheet, isWide: false)
                                 Spacer()
                             }
-                            ProgressBarView(playerStateVM: self.playerStateVM, showMenuSheet: $showMenuSheet, isWide: false)
-                            Spacer()
+                            .padding(.horizontal, 20)
                         }
-                    }
-                    
                         
-                    VStack(alignment: .leading, spacing: 0) {
-                        Spacer().frame(height: 320)
-                        ForEach(self.songListVM.songs, id: \.self) { song in
-                            SongListCell(userVM: self.userVM, song: song, rank: (self.songListVM.songs.firstIndex(of: song) ?? -1) + 1)
-                                .frame(height: 80)
-                            Divider()
-                                .padding(.horizontal)
+                        
+                        VStack(alignment: .leading, spacing: 0) {
+                            Spacer().frame(height: 320)
+                            ForEach(self.songListVM.songs, id: \.self) { song in
+                                SongListCell(userVM: self.userVM, song: song, rank: (self.songListVM.songs.firstIndex(of: song) ?? -1) + 1)
+                                    .frame(height: 80)
+                                Divider()
+                                    .padding(.horizontal)
+                            }
+                            Spacer().frame(height: 100)
                         }
-                        Spacer().frame(height: 100)
-                    }.animation(.easeInOut(duration: 0.3))
-                    
-                    // for hiding Song Queue Layer above Song Title Layer
-                    if (geo.frame(in: .global).minY <= -220) {
-                        VStack {
-                            Rectangle()
-                                .frame(height: 60)
-                                .foregroundColor(self.colorScheme == .dark ? Color("superdarkgray") : Color(.white))
-                            Spacer()
-                        }.edgesIgnoringSafeArea(.top).offset(y: -geo.frame(in: .global).minY)
+                        .animation(.easeInOut(duration: 0.3))
+                        
+                        // for hiding Song Queue Layer above Song Title Layer
+                        if (geo.frame(in: .global).minY <= -220) {
+                            VStack {
+                                Rectangle()
+                                    .frame(height: 60)
+                                    .foregroundColor(self.colorScheme == .dark ? Color("superdarkgray") : Color(.white))
+                                Spacer()
+                            }.edgesIgnoringSafeArea(.top).offset(y: -geo.frame(in: .global).minY)
+                        }
+                        
+                        //Layer 2: Song Title Layer
+                        if (geo.frame(in: .global).minY <= -220) {
+                            VStack {
+                                SongTitleBarView(playerStateVM: self.playerStateVM)
+                                    .onAppear(perform: hapticEvent)
+                                    .onDisappear(perform: hapticEvent)
+                                Spacer()
+                            }.offset(y: -geo.frame(in: .global).minY + self.offset)
+                        }
                     }
-                    
-                    //Layer 2: Song Title Layer
-                    if (geo.frame(in: .global).minY <= -220) {
-                        VStack {
-                            SongTitleBarView(playerStateVM: self.playerStateVM)
-                                .onAppear(perform: hapticEvent)
-                                .onDisappear(perform: hapticEvent)
-                            Spacer()
-                        }.offset(y: -geo.frame(in: .global).minY + self.offset)
+                    .frame(height: (CGFloat(self.songListVM.songs.count * 77 + 380)))
+                }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                
+                if songListVM.songs.isEmpty {
+                    VStack(alignment: .center) {
+                        Spacer()
+                        Text("tap + to add songs to session.")
+                            .font(.system(size: 19, weight: .semibold))
+                            .foregroundColor(Color("purpleblue"))
+                        Spacer()
                     }
                 }
-                .frame(height: (CGFloat(self.songListVM.songs.count * 77 + 380)))
+                
+                //Layer 3: Menu Layer
+                self.menu_layer
             }
-            
-            if songListVM.songs.isEmpty {
-                VStack(alignment: .center) {
-                    Spacer()
-                    Text("tap + to add songs to session.")
-                        .font(.system(size: 19, weight: .semibold))
-                        .foregroundColor(Color("purpleblue"))
-                    Spacer()
-                }
-            }
-            
-            //Layer 3: Menu Layer
-            self.menu_layer
-        }//.onAppear{ self.playerStateVM.viewDidLoad() }
+            .frame(width: geometry.size.width, height: geometry.size.height)
             // triggers updates on every second
             .onAppear{ self.playerStateVM.playerPause() }
-        
+        }
     }
     
     
     //MARK: Layer 3: Menu Layer
     private var menu_layer: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button(action: { self.showMenuSheet = true }) {
-                    Image(systemName: "ellipsis")
-                        .font(Font.system(.title))
-                        .foregroundColor(self.colorScheme == .dark ? Color.white : Color.black)
-                        .padding(25)
-                }.sheet(isPresented: self.$showMenuSheet) {
-                    MenuView(userVM: self.userVM, playerStateVM: self.playerStateVM, currentlyInSession: self.$currentlyInSession, showMenuSheet: self.$showMenuSheet)
-                }
-            }
+//            HStack {
+//                Spacer()
+//                Button(action: { self.showMenuSheet = true }) {
+//                    Image(systemName: "ellipsis")
+//                        .font(Font.system(.title))
+//                        .foregroundColor(self.colorScheme == .dark ? Color.white : Color.black)
+//                        .padding(25)
+//                }.sheet(isPresented: self.$showMenuSheet) {
+//                    MenuView(userVM: self.userVM, playerStateVM: self.playerStateVM, currentlyInSession: self.$currentlyInSession, showMenuSheet: self.$showMenuSheet)
+//                }
+//            }
 
             Spacer()
             HStack {
