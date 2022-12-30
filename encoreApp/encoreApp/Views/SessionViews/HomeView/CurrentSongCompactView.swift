@@ -12,7 +12,9 @@ import URLImage
 
 struct CurrentSongCompactView: View {
     @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject var playerStateVM: PlayerStateVM
+    
     @State var currentImage: Image = Image("albumPlaceholder")
     
     var body: some View {

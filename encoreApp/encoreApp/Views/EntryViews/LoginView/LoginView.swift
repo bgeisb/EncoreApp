@@ -94,8 +94,9 @@ struct LoginView: View {
                                             if !showActivityIndicator {
                                                 Text("Create Session")
                                             } else {
-                                                ActivityIndicator()
-                                                    .frame(width: 20, height: 20).foregroundColor(Color("purpleblue"))
+                                                ActivityIndicator(color: Color.white)
+                                                    .frame(width: 20, height: 20)
+                                                    .foregroundColor(Color("purpleblue"))
                                             }
                                         }
                                         .modifier(PlainButtonModifier(isDisabled: username.count < 1))

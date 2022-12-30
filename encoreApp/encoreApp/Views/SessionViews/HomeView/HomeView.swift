@@ -12,6 +12,7 @@ import CoreHaptics
 
 struct HomeView: View {
     @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject var musicController: MusicController = .shared
     @ObservedObject var songListVM: SongListVM
     @ObservedObject var userVM: UserVM
@@ -52,7 +53,7 @@ struct HomeView: View {
                                 self.offset = geo.frame(in: .global).minY
                             }
                         
-                        if (geo.frame(in: .global).minY > -220 && playerStateVM.song.name != "empty_song") {
+//                        if (geo.frame(in: .global).minY > -220 && playerStateVM.song.name != "") {
                             VStack(spacing: 25) {
                                 Spacer()
                                     .frame(height: 40)
@@ -77,7 +78,7 @@ struct HomeView: View {
                                 Spacer()
                             }
                             .padding(.horizontal, 20)
-                        }
+//                        }
                         
                         
                         VStack(alignment: .leading, spacing: 0) {
@@ -119,9 +120,10 @@ struct HomeView: View {
                 if songListVM.songs.isEmpty {
                     VStack(alignment: .center) {
                         Spacer()
-                        Text("tap + to add songs to session.")
-                            .font(.system(size: 19, weight: .semibold))
-                            .foregroundColor(Color("purpleblue"))
+                        Text("Add songs to the playlist \n by switching to the search tab")
+                            .multilineTextAlignment(.center)
+                            .font(.subheadline.bold())
+                            .foregroundColor(Color("Gray03"))
                         Spacer()
                     }
                 }
@@ -151,12 +153,12 @@ struct HomeView: View {
 //                }
 //            }
 
-            Spacer()
-            HStack {
-                Spacer()
-                AddSongsBarView(userVM: userVM, searchResultListVM: searchResultListVM, songListVM: songListVM, playerStateVM: playerStateVM, isPlay: $isPlay, showAddSongSheet: $showAddSongSheet, currentlyInSession: $currentlyInSession)
-                Spacer()
-            }.padding(.bottom)
+//            Spacer()
+//            HStack {
+//                Spacer()
+//                AddSongsBarView(userVM: userVM, searchResultListVM: searchResultListVM, songListVM: songListVM, playerStateVM: playerStateVM, isPlay: $isPlay, showAddSongSheet: $showAddSongSheet, currentlyInSession: $currentlyInSession)
+//                Spacer()
+//            }.padding(.bottom)
         }
     }
     

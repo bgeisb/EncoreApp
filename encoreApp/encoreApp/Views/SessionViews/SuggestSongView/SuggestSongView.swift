@@ -28,7 +28,6 @@ struct SuggestSongView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            topBar.padding(.vertical)
             SearchBar(searchResultListVM: searchResultListVM, userVM: userVM, text: $searchText, songs: $searchResultListVM.items, placeholder: "Search")
             if searchResultListVM.items.isEmpty {
                 VStack(alignment: .center) {

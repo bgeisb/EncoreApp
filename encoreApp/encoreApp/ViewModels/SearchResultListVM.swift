@@ -9,10 +9,14 @@
 import Foundation
 
 class SearchResultListVM: ObservableObject {
-    var userVM: UserVM
+    
     @Published var items: [SpotifySearchPayload.Tracks.Item] = []
+    
+    var userVM: UserVM
+    
     var authToken = ""
     var auth_url = ""
+    
     typealias JSONStandard = [String : AnyObject]
     
     init(userVM: UserVM) {

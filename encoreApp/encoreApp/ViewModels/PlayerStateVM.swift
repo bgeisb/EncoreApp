@@ -17,7 +17,7 @@ class PlayerStateVM: ObservableObject {
     @Published var progress: Int64
     @Published var isPlaying: Bool
     @Published var normalizedPlaybackPosition: CGFloat = 0
-    @Published var albumCover: UIImage = UIImage(imageLiteralResourceName: "IconPlaceholder")
+    @Published var albumCover: UIImage = UIImage(imageLiteralResourceName: "albumPlaceholder")
     @Published var songTimestamp_ms: CGFloat = 0
     var serverURL: URL
     var userVM: UserVM
@@ -43,7 +43,7 @@ class PlayerStateVM: ObservableObject {
     
     init(userVM: UserVM) {
         print("INIT PlayerStateVM")
-        var emptySong = Song(id: "0", name: "empty_song", artists: [""], duration_ms: 1, cover_url: "https://musicnotesbox.com/media/catalog/product/7/3/73993_image.png", album_name: "", preview_url: "", suggested_by: "", score: 0, time_added: "", upvoters: [], downvoters: [])
+        var emptySong = Song(id: "0", name: "", artists: [""], duration_ms: 1, cover_url: "https://musicnotesbox.com/media/catalog/product/7/3/73993_image.png", album_name: "", preview_url: "", suggested_by: "", score: 0, time_added: "", upvoters: [], downvoters: [])
         song = emptySong
         progress = 0
         isPlaying = false

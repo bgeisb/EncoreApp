@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/CodeScanner",
       "state" : {
-        "revision" : "9d902dec616bd70b1a2a1b1e6d821c10c392ba9f",
-        "version" : "1.0.6"
+        "revision" : "8a9ce909a4ea502d4a2ccf327ae8c16b7e48e740",
+        "version" : "1.1.0"
       }
     },
     {
@@ -16,6 +16,15 @@
       "state" : {
         "revision" : "a4622b4d6fdbe76cc5487bc27e84029abaf07217",
         "version" : "4.0.1"
+      }
+    },
+    {
+      "identity" : "tabify",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bgeisb/Tabify.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "767a160bae24f801fddf6f78845e6d88802810ef"
       }
     }
   ],

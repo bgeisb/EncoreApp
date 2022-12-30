@@ -10,7 +10,9 @@ import Foundation
 import IKEventSource
 
 class SongListVM: ObservableObject {
+    
     @Published var songs: [Song] = []
+    
     var serverURL: URL
     var userVM: UserVM
     var eventSource: EventSource

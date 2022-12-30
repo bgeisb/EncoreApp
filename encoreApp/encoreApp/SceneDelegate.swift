@@ -10,22 +10,16 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate, UIGestureRecognizerDelegate {
+    @ObservedObject var userVM: UserVM = UserVM()
     
     var window: UIWindow?
-    //var model = Model()
     var accessToken = "accessToken"
     var musicController = MusicController()
     
     var playURI = ""
     
-    //let SpotifyClientID = "a8be659c46584d1c818dadd8023a4f36"
     let SpotifyClientID = "7ac28b13b4f641df84917276eefb8012"
     let SpotifyRedirectURL = URL(string: "encoreapp://spotify/callback")!
-    
-//    lazy var configuration = SPTConfiguration(
-//        clientID: SpotifyClientID,
-//        redirectURL: SpotifyRedirectURL
-//    )
     
     private lazy var configuration: SPTConfiguration = {
       let configuration = SPTConfiguration(clientID: SpotifyClientID, redirectURL: SpotifyRedirectURL)
@@ -59,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, S
         }
         
         // Create the SwiftUI view that provides the window contents.
-        let contentView = AppContentView(joinedViaURL: joinedViaURL, sessionID: sessionID)
+        let contentView = AppContentView(userVM: userVM, joinedViaURL: joinedViaURL, sessionID: sessionID)
         
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -106,7 +100,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate, S
                 print(sessionID)
             }
             
-            let contentView = AppContentView(joinedViaURL: true, sessionID: sessionID)
+            let contentView = AppContentView(userVM: userVM, joinedViaURL: true, sessionID: sessionID)
             // Use a UIHostingController as window root view controller.
             if let windowScene = scene as? UIWindowScene {
                 let window = UIWindow(windowScene: windowScene)

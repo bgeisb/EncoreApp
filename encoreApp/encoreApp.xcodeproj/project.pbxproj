@@ -42,7 +42,7 @@
 		8F27498424A60C880084FC99 /* SuggestSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F27498324A60C880084FC99 /* SuggestSongCell.swift */; };
 		8F27498624A610000084FC99 /* SpotifySearchPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F27498524A610000084FC99 /* SpotifySearchPayload.swift */; };
 		8F2EF43A24A2ADEE000EC1B7 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2EF43924A2ADEE000EC1B7 /* AuthenticationViewModel.swift */; };
-		8F2EF43C24A34B74000EC1B7 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2EF43B24A34B74000EC1B7 /* NetworkModel.swift */; };
+		8F2EF43C24A34B74000EC1B7 /* SearchResultListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2EF43B24A34B74000EC1B7 /* SearchResultListVM.swift */; };
 		8F589F5F24B6178F00BA5E60 /* CurrentSongCompactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F589F5E24B6178F00BA5E60 /* CurrentSongCompactView.swift */; };
 		8F8FE232249E679C006674E8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FE231249E679C006674E8 /* SearchBar.swift */; };
 		8F8FE234249FBB0B006674E8 /* AuthenticationWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8FE233249FBB0B006674E8 /* AuthenticationWebView.swift */; };
@@ -62,6 +62,11 @@
 		BDB10199295BC69400D0929B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB10198295BC69400D0929B /* LottieView.swift */; };
 		BDB1019C295BC8BD00D0929B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BDB1019B295BC8BD00D0929B /* Lottie */; };
 		BDB1019F295BC9CF00D0929B /* Sound_Visualizer.json in Resources */ = {isa = PBXBuildFile; fileRef = BDB1019E295BC9CF00D0929B /* Sound_Visualizer.json */; };
+		BDE4B565295E1AAE00F278F3 /* TabifyItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE4B564295E1AAE00F278F3 /* TabifyItems.swift */; };
+		BDE4B568295E1B0B00F278F3 /* Tabify in Frameworks */ = {isa = PBXBuildFile; productRef = BDE4B567295E1B0B00F278F3 /* Tabify */; };
+		BDE4B56B295E222300F278F3 /* CustomTabifyBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE4B56A295E222300F278F3 /* CustomTabifyBarStyle.swift */; };
+		BDE4B56D295E222F00F278F3 /* CustomTabifyItemStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE4B56C295E222F00F278F3 /* CustomTabifyItemStyle.swift */; };
+		BDE4B56F296324F400F278F3 /* Loading_Spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = BDE4B56E296324F400F278F3 /* Loading_Spinner.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -118,7 +123,7 @@
 		8F27498324A60C880084FC99 /* SuggestSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestSongCell.swift; sourceTree = "<group>"; };
 		8F27498524A610000084FC99 /* SpotifySearchPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySearchPayload.swift; sourceTree = "<group>"; };
 		8F2EF43924A2ADEE000EC1B7 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
-		8F2EF43B24A34B74000EC1B7 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
+		8F2EF43B24A34B74000EC1B7 /* SearchResultListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListVM.swift; sourceTree = "<group>"; };
 		8F589F5E24B6178F00BA5E60 /* CurrentSongCompactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSongCompactView.swift; sourceTree = "<group>"; };
 		8F8FE231249E679C006674E8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		8F8FE233249FBB0B006674E8 /* AuthenticationWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationWebView.swift; sourceTree = "<group>"; };
@@ -133,6 +138,10 @@
 		8FE5348E24812EFB00D4D630 /* VoteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteState.swift; sourceTree = "<group>"; };
 		BDB10198295BC69400D0929B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		BDB1019E295BC9CF00D0929B /* Sound_Visualizer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sound_Visualizer.json; sourceTree = "<group>"; };
+		BDE4B564295E1AAE00F278F3 /* TabifyItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabifyItems.swift; sourceTree = "<group>"; };
+		BDE4B56A295E222300F278F3 /* CustomTabifyBarStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabifyBarStyle.swift; sourceTree = "<group>"; };
+		BDE4B56C295E222F00F278F3 /* CustomTabifyItemStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabifyItemStyle.swift; sourceTree = "<group>"; };
+		BDE4B56E296324F400F278F3 /* Loading_Spinner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading_Spinner.json; sourceTree = "<group>"; };
 		BDFC662C2959FC42003610DF /* SpotifyiOS.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SpotifyiOS.xcframework; sourceTree = "<group>"; };
 		CB562E311EF290F2CF787D15 /* Pods_encoreApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_encoreApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB52A25E9E25B46F5C98F1E1 /* Pods-encoreApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-encoreApp.release.xcconfig"; path = "Target Support Files/Pods-encoreApp/Pods-encoreApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +155,7 @@
 				BDA4E34B295DCE18006FE55D /* SpotifyiOS.framework in Frameworks */,
 				BDB1019C295BC8BD00D0929B /* Lottie in Frameworks */,
 				233D2ADD2493E36C00994038 /* CodeScanner in Frameworks */,
+				BDE4B568295E1B0B00F278F3 /* Tabify in Frameworks */,
 				BDA4E34D295DCE78006FE55D /* SpotifyiOS.xcframework in Frameworks */,
 				9294009AE55977D9C7CE79BE /* Pods_encoreApp.framework in Frameworks */,
 			);
@@ -189,6 +199,7 @@
 				231CDA2E249E0B9700632B8C /* ImageLoader.swift */,
 				23050BBB2513627D00B59A4C /* AnyGestureRecognizer.swift */,
 				231CDA30249E0BB700632B8C /* AsyncImage.swift */,
+				BDE4B569295E21F800F278F3 /* Styles */,
 				BDB1019D295BC9BF00D0929B /* Lottie */,
 				23190665247DA26400DA550B /* Assets.xcassets */,
 				2319066A247DA26400DA550B /* LaunchScreen.storyboard */,
@@ -234,10 +245,11 @@
 		233D2AD1249273FA00994038 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				234B8D942483A4BF00C0F7F3 /* UserVM.swift */,
 				233D2ACD2491990100994038 /* UserListVM.swift */,
 				231CDA25249D3B9A00632B8C /* SongListVM.swift */,
-				234B8D942483A4BF00C0F7F3 /* UserVM.swift */,
 				231CDA21249D397F00632B8C /* PlayerStateVM.swift */,
+				8F2EF43B24A34B74000EC1B7 /* SearchResultListVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -249,7 +261,7 @@
 				234B8D9224839C9200C0F7F3 /* UserListElement.swift */,
 				8F108A982480537F00D5C27B /* Model.swift */,
 				23190677247DB92600DA550B /* Mockmodel.swift */,
-				8F2EF43B24A34B74000EC1B7 /* NetworkModel.swift */,
+				BDE4B564295E1AAE00F278F3 /* TabifyItems.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,8 +344,18 @@
 			isa = PBXGroup;
 			children = (
 				BDB1019E295BC9CF00D0929B /* Sound_Visualizer.json */,
+				BDE4B56E296324F400F278F3 /* Loading_Spinner.json */,
 			);
 			path = Lottie;
+			sourceTree = "<group>";
+		};
+		BDE4B569295E21F800F278F3 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				BDE4B56A295E222300F278F3 /* CustomTabifyBarStyle.swift */,
+				BDE4B56C295E222F00F278F3 /* CustomTabifyItemStyle.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		EA0C8535CA145DB755EB7178 /* Frameworks */ = {
@@ -367,6 +389,7 @@
 			packageProductDependencies = (
 				233D2ADC2493E36C00994038 /* CodeScanner */,
 				BDB1019B295BC8BD00D0929B /* Lottie */,
+				BDE4B567295E1B0B00F278F3 /* Tabify */,
 			);
 			productName = encoreApp;
 			productReference = 2319065C247DA25F00DA550B /* encoreApp.app */;
@@ -399,6 +422,7 @@
 			packageReferences = (
 				233D2ADB2493E36C00994038 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				BDB1019A295BC8BD00D0929B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				BDE4B566295E1B0B00F278F3 /* XCRemoteSwiftPackageReference "Tabify" */,
 			);
 			productRefGroup = 2319065D247DA25F00DA550B /* Products */;
 			projectDirPath = "";
@@ -415,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2319066C247DA26400DA550B /* LaunchScreen.storyboard in Resources */,
+				BDE4B56F296324F400F278F3 /* Loading_Spinner.json in Resources */,
 				23190669247DA26400DA550B /* Preview Assets.xcassets in Resources */,
 				23190666247DA26400DA550B /* Assets.xcassets in Resources */,
 				BDB1019F295BC9CF00D0929B /* Sound_Visualizer.json in Resources */,
@@ -480,6 +505,7 @@
 				8F9AF39A24C4A18200FCEFD0 /* TextButtonModifier.swift in Sources */,
 				23190678247DB92600DA550B /* Mockmodel.swift in Sources */,
 				8FB738DE252884C800DC5BDF /* PopupQRView.swift in Sources */,
+				BDE4B56D295E222F00F278F3 /* CustomTabifyItemStyle.swift in Sources */,
 				8F8FE234249FBB0B006674E8 /* AuthenticationWebView.swift in Sources */,
 				231CDA31249E0BB700632B8C /* AsyncImage.swift in Sources */,
 				234B8D9324839C9200C0F7F3 /* UserListElement.swift in Sources */,
@@ -498,11 +524,12 @@
 				23117C5224895F6B0023B680 /* ActivityViewController.swift in Sources */,
 				233D2AD6249381C600994038 /* QRCodeView.swift in Sources */,
 				234B8D9924884EBC00C0F7F3 /* Blur.swift in Sources */,
-				8F2EF43C24A34B74000EC1B7 /* NetworkModel.swift in Sources */,
+				8F2EF43C24A34B74000EC1B7 /* SearchResultListVM.swift in Sources */,
 				231CDA22249D397F00632B8C /* PlayerStateVM.swift in Sources */,
 				235EB4D12480F6CC007A720D /* MenuView.swift in Sources */,
 				8FB1058C24AB56DF007C15A1 /* AddSongsBarView.swift in Sources */,
 				23190662247DA25F00DA550B /* SceneDelegate.swift in Sources */,
+				BDE4B565295E1AAE00F278F3 /* TabifyItems.swift in Sources */,
 				231CDA2F249E0B9700632B8C /* ImageLoader.swift in Sources */,
 				231CDA28249D3CA600632B8C /* SuggestSongView.swift in Sources */,
 				8FA39C2F2535E446009460F9 /* BlueCardModifier.swift in Sources */,
@@ -515,6 +542,7 @@
 				8F108A992480537F00D5C27B /* Model.swift in Sources */,
 				23050BBC2513627D00B59A4C /* AnyGestureRecognizer.swift in Sources */,
 				8FDEBF7C24AD2D240090B5F2 /* ProgressBarView.swift in Sources */,
+				BDE4B56B295E222300F278F3 /* CustomTabifyBarStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +789,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		BDE4B566295E1B0B00F278F3 /* XCRemoteSwiftPackageReference "Tabify" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bgeisb/Tabify.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -773,6 +809,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BDB1019A295BC8BD00D0929B /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		BDE4B567295E1B0B00F278F3 /* Tabify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BDE4B566295E1B0B00F278F3 /* XCRemoteSwiftPackageReference "Tabify" */;
+			productName = Tabify;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

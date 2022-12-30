@@ -13,13 +13,16 @@ import UIKit
 struct SearchBar: UIViewRepresentable {
     @ObservedObject var searchResultListVM: SearchResultListVM
     @ObservedObject var userVM: UserVM
+    
     @Binding var text: String
     @Binding var songs: [SpotifySearchPayload.Tracks.Item]
+    
     var placeholder: String
     
     class Coordinator: NSObject, UISearchBarDelegate {
         @ObservedObject var searchResultListVM: SearchResultListVM
         @ObservedObject var userVM: UserVM
+        
         @Binding var text: String
         @Binding var songs: [SpotifySearchPayload.Tracks.Item]
         

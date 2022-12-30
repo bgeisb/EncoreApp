@@ -10,7 +10,9 @@ import Foundation
 import IKEventSource
 
 class UserListVM: ObservableObject {
+    
     @Published var members: [UserListElement] = []
+    
     var serverURL: URL
     var userVM: UserVM
     var eventSource: EventSource

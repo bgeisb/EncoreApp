@@ -29,15 +29,17 @@ struct CurrentSongView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
+                if playerStateVM.song.name != "" && playerStateVM.isPlaying {
                 Text("Now playing")
                     .font(.caption2.bold())
                     .foregroundColor(Color("Gray01"))
                                      
                  Spacer()
                        
-                // TODO: Fix pausing problem when isPlaying = false
-                LottieView(lottieFile: "Sound_Visualizer", isPlaying: $playerStateVM.isPlaying)
-                    .frame(width: 20, height: 20)
+                
+                    LottieView(lottieFile: "Sound_Visualizer", isPlaying: $playerStateVM.isPlaying)
+                        .frame(width: 20, height: 20)
+                }
             }
             HStack(spacing: 15) {
                 // Cover

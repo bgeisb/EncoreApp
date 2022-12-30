@@ -12,42 +12,93 @@ struct MenuView: View {
     @Environment(\.colorScheme) var colorScheme
     @ObservedObject var userVM: UserVM
     @ObservedObject var userListVM: UserListVM
-    @ObservedObject var playerStateVM: PlayerStateVM
     
-    @Binding var showMenuSheet: Bool
     @Binding var currentlyInSession: Bool
     @State var showAlert = false
     @State var showSessionExpiredAlert = false
     @State var showShareSheet: Bool = false
     @State var showPopupQRCode: Bool = false
     
-    init(userVM: UserVM, playerStateVM: PlayerStateVM, currentlyInSession: Binding<Bool>, showMenuSheet: Binding<Bool>) {
+    init(userVM: UserVM, currentlyInSession: Binding<Bool>) {
         self.userVM = userVM
         self.userListVM = UserListVM(userVM: userVM, sessionID: nil)
-        self.playerStateVM = playerStateVM
         self._currentlyInSession = currentlyInSession
-        self._showMenuSheet = showMenuSheet
     }
     
     var body: some View {
-        GeometryReader { geo in
+        GeometryReader { geometry in
             
-            VStack(spacing: 0) {
-                topBar
+            ZStack {
+                Image("Blob")
+                    .scaledToFill()
+                    .offset(y: -geometry.size.height/3.5)
                 
-                sessionTitle
-                
-                qrCode
-                
-                shareLinkButton
-                
-                VStack {
-                    membersList
+                VStack(spacing: 0) {
+                    
                     Spacer()
-                }.modifier(BlueCardModifier())
-                
-                leaveButton
+                        .frame(height: 40.0)
+                    
+                    HStack (alignment: .bottom) {
+                        VStack(alignment: .leading) {
+                            Text("You're currently in")
+                                .font(.title3.bold())
+                                .foregroundColor(Color("Gray01"))
+                            
+                            Text("\(userListVM.members.first(where: { $0.is_admin })?.username ?? "Host")'s Session 🎧")
+                                .font(.title.bold())
+                                .foregroundColor(Color("Blue"))
+                        }
+                        
+                        Spacer()
+                        
+                        leaveButton
+                    }
+                    .padding(.bottom, 35.0)
+                    
+                    QRCodeView(url: "encoreApp://\(self.userVM.sessionID)", size: 150)
+                        .padding(10.0)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.white)
+                        )
+//                    .alert(isPresented: self.$showSessionExpiredAlert) {
+//                        Alert(title: Text("Session expired"),
+//                              message: Text("The Host has ended the Session."),
+//                              dismissButton: .destructive(Text("Leave"), action: {
+//                                self.currentlyInSession = false
+//                              }))
+//                    }
+                    .padding(.bottom, -15)
+                    
+                    Button(action: { self.showShareSheet.toggle() }) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.white)
+                                .frame(width: 40, height: 40)
+                                .shadow(
+                                    color: Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.25)),
+                                    radius:25, x:0, y:4
+                                )
+                            
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(Color("Blue"))
+                                .font(.title3)
+                        
+                        }
+                    }
+                    .offset(x: 85)
+                    
+                    Spacer()
+                        .frame(height: 30)
+                    
+                    membersList
+                    
+                    Spacer()
+                }
+                .padding(.horizontal, 20.0)
+                .frame(width: geometry.size.width, height: geometry.size.height)
             }
+            .frame(width: geometry.size.width, height: geometry.size.height)
             
             .sheet(isPresented: self.$showShareSheet) {
                 ActivityViewController(activityItems: ["encoreApp://\(self.userVM.sessionID)"] as [Any], applicationActivities: nil)
@@ -61,72 +112,8 @@ struct MenuView: View {
         }
     }
     
-    var topBar: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color.secondary)
-                .frame(width: 60, height: 4)
-        }.padding()
-    }
-    
-    var sessionTitle: some View {
-        Text("\(userListVM.members.first(where: { $0.is_admin })?.username ?? "Host")'s session")
-            .overlay(
-                Rectangle()
-                    .foregroundColor(Color("purpleblue"))
-                    .frame(height: 2)
-                    .cornerRadius(100)
-                    .offset(y: 2), alignment: .bottom)
-            .font(.system(size: 25, weight: .bold))
-            .padding(.bottom, 10)
-    }
-    
-    var qrCode: some View {
-        Button(action: {
-            withAnimation { self.showPopupQRCode.toggle() }
-        }) {
-            QRCodeView(url: "encoreApp://\(self.userVM.sessionID)", size: 150).padding(10)
-        }.buttonStyle(PlainButtonStyle())
-        .alert(isPresented: self.$showSessionExpiredAlert) {
-            Alert(title: Text("Session expired"),
-                  message: Text("The Host has ended the Session."),
-                  dismissButton: .destructive(Text("Leave"), action: {
-                    self.currentlyInSession = false
-                  }))
-        }
-        .padding(.bottom, 10)
-    }
-    
-    var shareLinkButton: some View {
-        Button(action: { self.showShareSheet.toggle() }) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 15).frame(maxWidth: .infinity, maxHeight: 50)
-                    .foregroundColor(self.colorScheme == .dark ? Color("darkgray") : Color("lightgray"))
-                HStack {
-                    Text("Share Invite Link")
-                        .foregroundColor(self.colorScheme == .dark ? Color.white : Color.black)
-                        .font(.headline)
-                        .padding(.leading)
-                    Spacer()
-                    Image(systemName: "square.and.arrow.up")
-                        .foregroundColor(self.colorScheme == .dark ? Color.white : Color.black)
-                        .font(.system(size: 20, weight: .medium))
-                        .padding(.trailing)
-                }
-            }.padding(.horizontal, 20)
-        }
-    }
-    
     var membersList: some View {
         VStack(spacing: 0) {
-            HStack {
-                Spacer()
-                Text("Leaderboard")
-                    .font(.system(size: 22, weight: .semibold))
-                    .foregroundColor(Color("purpleblue"))
-                    .padding(10)
-                Spacer()
-            }
             ScrollView {
                 VStack {
                     ForEach(self.userListVM.members.sorted(by: { $0.score > $1.score }), id: \.self) { member in
@@ -152,20 +139,31 @@ struct MenuView: View {
     }
     
     var leaveButton: some View {
-        Button(action: { self.userVM.isAdmin ? (self.showAlert = true) : (self.leaveSession(username: self.userVM.username)) }) {
-            Text(self.userVM.isAdmin ? "Delete Session" : "Leave Session")
-                .modifier(PlainButtonModifier(isDisabled: false, backgroundColor: Color.red, foregroundColor: Color.white))
-        }.padding(.bottom)
+        Button {
+            self.userVM.isAdmin ? (self.showAlert = true) : (self.leaveSession(username: self.userVM.username))
+        } label: {
+            Image(systemName: self.userVM.isAdmin ? "trash" : "rectangle.portrait.and.arrow.right")
+                    .foregroundColor(Color.red)
+                    .font(.title3)
+        }
+        .padding(.bottom)
         .alert(isPresented: self.$showAlert) {
-            Alert(title: Text("Delete Session"),
-                  message: Text("By deleting the current session all members will be kicked."),
-                  primaryButton: .destructive(Text("Delete"), action: {
-                    self.playerStateVM.playerPause()
-                    self.deleteSession(username: self.userVM.username)
-                  }),
-                  secondaryButton: .cancel(Text("Cancel"), action: {
+            Alert(
+                title: Text("Delete Session"),
+                message: Text("By deleting the current session all members will be kicked."),
+                primaryButton: .destructive(
+                    Text("Delete"),
+                    action: {
+//                      TODO: Try to find a workaround to make this work again
+//                      self.playerStateVM.playerPause()
+                        self.deleteSession(username: self.userVM.username)
+                    }),
+                secondaryButton: .cancel(
+                    Text("Cancel"),
+                    action: {
                     self.showAlert = false
-                  }))
+                    })
+            )
         }
     }
     
@@ -313,11 +311,9 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var userVM = UserVM()
-    static var playerStateVM = PlayerStateVM(userVM: userVM)
     @State static var currentlyInSession = false
-    @State static var showMenuSheet = false
     
     static var previews: some View {
-        MenuView(userVM: userVM, playerStateVM: playerStateVM, currentlyInSession: $currentlyInSession, showMenuSheet: $showMenuSheet)
+        MenuView(userVM: userVM, currentlyInSession: $currentlyInSession)
     }
 }

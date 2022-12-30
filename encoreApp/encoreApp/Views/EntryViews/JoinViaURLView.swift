@@ -51,7 +51,7 @@ struct JoinViaURLView: View {
                     if !showActivityIndicator {
                         Text("Join Session")
                     } else {
-                        ActivityIndicator()
+                        ActivityIndicator(color: Color.white)
                             .frame(width: 20, height: 20).foregroundColor(Color.white)
                     }
                 }
