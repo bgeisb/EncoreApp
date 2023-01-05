@@ -42,7 +42,6 @@ struct CurrentSongView: View {
                 }
             }
             HStack(spacing: 15) {
-                // Cover
                 ZStack {
                     Image(uiImage: self.playerStateVM.albumCover)
                     .resizable()
@@ -68,6 +67,7 @@ struct CurrentSongView: View {
                     // Title
                     Text("\(self.playerStateVM.song.name)")
                         .font(.headline.bold())
+                        .lineLimit(1)
                 }
                 
                 Spacer()

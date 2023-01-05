@@ -23,7 +23,9 @@ struct SongListCell: View {
             songView
             Spacer()
             voteView
-        }.onAppear {
+        }
+        .padding(.horizontal, 40.0)
+        .onAppear {
             if self.song.upvoters.contains(self.userVM.username) {
                 self.voteState = .UPVOTE
             } else if self.song.downvoters.contains(self.userVM.username) {
@@ -36,40 +38,59 @@ struct SongListCell: View {
     
     private var rankView: some View {
         Text("\(rank)")
-            .font(.system(size: 25, weight: .bold))
+            .font(.footnote.bold())
             .padding(.horizontal, 10)
     }
     
-    private var albumView: some View {
-        URLImage(url: URL(string: self.song.cover_url)!) { image in
-               image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+    private var albumView: AnyView {
+        if let url = URL(string: self.song.cover_url) {
+            return AnyView(
+                ZStack(alignment: .center) {
+                    RoundedRectangle(cornerRadius: 5.0)
+                        .fill(Color("Gray06"))
+                    
+                    URLImage(url: url) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .cornerRadius(5.0)
+                            .frame(width: 45, height: 45)
+                    }
+                }
+                .frame(width: 50, height: 50)
+            )
+        } else {
+            return AnyView(
+                RoundedRectangle(cornerRadius: 5.0)
+                .fill(Color("Gray05"))
                 .frame(width: 55, height: 55)
-                .cornerRadius(5)
-            }.frame(width: 55, height: 55)
-            .padding(.horizontal, 10)
+            )
+        }
     }
     
     private var songView: some View {
         VStack(alignment: .leading) {
-            Text(self.song.name)
-                .font(.system(size: 18, weight: .semibold))
+            
             Text(self.song.artists[0])
-                .font(.system(size: 16, weight: .regular))
+                .font(.caption2.bold())
+                .foregroundColor(Color("Gray03"))
+            
+            Text(self.song.name)
+                .font(.subheadline.bold())
+                .lineLimit(1)
+            
         }
+        .padding(.horizontal, 10.0)
     }
     
     private var voteView: some View {
         HStack {
             Text("\(self.song.upvoters.count - self.song.downvoters.count)")
-                .font(.system(size: 23, weight: .semibold))
-                .padding(.leading, 10)
-                .padding(.trailing, 5)
-            VStack(spacing: 0) {
-                upvoteButton
-                downvoteButton
-            }.padding(.trailing, 10)
+                .font(.footnote.bold())
+                .foregroundColor(Color("Gray02"))
+            
+            Image(systemName: "heart")
+                .font(.footnote.bold())
         }
     }
     

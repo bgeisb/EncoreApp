@@ -81,13 +81,11 @@ struct HomeView: View {
 //                        }
                         
                         
-                        VStack(alignment: .leading, spacing: 0) {
+                        VStack(alignment: .leading, spacing: 20.0) {
                             Spacer().frame(height: 320)
+                            
                             ForEach(self.songListVM.songs, id: \.self) { song in
                                 SongListCell(userVM: self.userVM, song: song, rank: (self.songListVM.songs.firstIndex(of: song) ?? -1) + 1)
-                                    .frame(height: 80)
-                                Divider()
-                                    .padding(.horizontal)
                             }
                             Spacer().frame(height: 100)
                         }
